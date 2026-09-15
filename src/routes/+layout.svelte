@@ -1,10 +1,18 @@
 <script>
+import { onMount } from "svelte";
 import { page } from "$app/stores";
-import { Styles, Navbar, Collapse, Nav, NavItem, NavLink, NavbarBrand, NavbarToggler, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "sveltestrap";
-import { playgrounds } from "$stores/tutorials";
+import { Styles, Navbar, Collapse, Nav, NavItem, NavLink, NavbarBrand, NavbarToggler, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Icon } from "sveltestrap";
+import { playgrounds, loadDynamicLabs } from "$stores/tutorials";
 
 let isNavbarOpen;
 $: path = $page.url.pathname;
+
+// Pulls in labs authored through /admin (see src/stores/tutorials.js) -
+// skipped under /admin itself, which manages this same data directly and
+// has no need for the public-facing shape /api/labs returns.
+onMount(() => {
+	if (!path.startsWith("/admin")) loadDynamicLabs();
+});
 </script>
 
 <svelte:head>
@@ -39,6 +47,23 @@ $: path = $page.url.pathname;
 		<span class="brand-divider" aria-hidden="true" />
 		<img class="brand-btech-mark" src="/logo-mark.png" alt="Bridgerland Technical College" />
 	</NavbarBrand>
+	<!--
+		Discoverability link into /admin, same convention as every other
+		Iterverse product's header (e.g. iterverse_type's Logo.jsx). Always
+		visible (outside <Collapse>, unlike the rest of the nav) and plain
+		navigation rather than styled as a NavItem, since it's a staff-only
+		side door, not a student-facing nav destination.
+
+		data-sveltekit-reload is required here, not just this app's usual
+		convention (see this file's header comment): /admin sits behind a
+		real Cloudflare Access Application, whose interactive login redirect
+		can only complete on a real top-level navigation - a client-side
+		SvelteKit route swap would just fetch the login page's HTML instead
+		of actually sending the browser through it.
+	-->
+	<a class="admin-link" href="/admin" title="Labs Admin" aria-label="Labs Admin" data-sveltekit-reload>
+		<Icon name="shield-lock" />
+	</a>
 	<NavbarToggler on:click={() => (isNavbarOpen = !isNavbarOpen)} />
 	<Collapse isOpen={isNavbarOpen} navbar expand="md" on:update={(event) => (isNavbarOpen = event.detail.isOpen)}>
 		<Nav class="ms-auto" navbar>

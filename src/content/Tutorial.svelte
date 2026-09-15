@@ -69,7 +69,7 @@ afterNavigate(() => {
 
 					<div id="tutorial-wrapper" class="row" style="overflow-x: hidden">
 						<div class="container">
-							<svelte:component this={stepInfo.component} />
+							<svelte:component this={stepInfo.component} {...stepInfo.props || {}} />
 						</div>
 					</div>
 				</div>

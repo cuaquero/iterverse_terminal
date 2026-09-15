@@ -55,6 +55,21 @@ ACCESS_TEAM_DOMAIN = "dawn-mountain-9c54.cloudflareaccess.com"
 ACCESS_AUD = "879341b29dc2157414bb5e34c138f18fb527021d8fd43e4c4ba10d2c73ece7eb"
 ROSTER_API_URL = "https://roster-api.iterverse.net"
 
+# Gates /admin (see src/routes/admin) - deliberately a SEPARATE Access
+# Application from ACCESS_AUD above, not the same one every enrolled
+# student already passes: staff editing labs are not students with a
+# roster entitlement, and ACCESS_AUD's Application only exists to satisfy
+# hooks.server.js's per-student session gate, which /admin bypasses
+# entirely (see hooks.server.js's PUBLIC_PATHS). Same convention as
+# iterverse_type's ACCESS_AUD_ADMIN. Placeholder below fails closed until
+# replaced with a real value - that's intentional, not a bug: better a
+# locked-out admin page than a silently-open one. To set it up: Zero
+# Trust dashboard -> Access -> Applications -> Add an application ->
+# Self-hosted, path `terminal.iterverse.net/admin*`, policy restricted to
+# actual staff (not the student roster) -> Overview -> Application
+# Audience (AUD) Tag.
+ACCESS_AUD_ADMIN = "f2976093c7c88395fa652dbaca51669299d24f2dd2c9d0730d4f905b552bee67"
+
 # ROSTER_SERVICE_KEY is a secret, not a var - not stored here
 # (`wrangler secret put ROSTER_SERVICE_KEY`). It must be the exact same
 # value iterverse_hub calls SERVICE_KEY, under whatever name each
@@ -92,6 +107,17 @@ ROSTER_API_URL = "https://roster-api.iterverse.net"
 #     redeploying each of those three normally. Whenever this key is
 #     rotated again: redeploy every Pages-based consumer afterward,
 #     don't just assume the secret take effect on its own.
+
+# Shared store for labs authored through /admin (see src/routes/admin) -
+# lets an edit there apply on the site immediately, no code change or
+# deploy needed. Same pattern as iterverse_type's content_sources D1
+# database. Created with `npx wrangler d1 create iterverse-cli-labs`;
+# schema lives in migrations/, applied with:
+#   npx wrangler d1 migrations apply iterverse-cli-labs --remote
+[[d1_databases]]
+binding = "LABS_DB"
+database_name = "iterverse-cli-labs"
+database_id = "eac969a1-1917-413a-a380-fd379d081a18"
 
 # Session store for src/lib/server/session.js. "SESSIONS" was already
 # taken as a namespace *title* by emu_print's own session store (titles

@@ -15,7 +15,12 @@
 // checking against that assumption before landing under static/data/.
 import { getSessionUser } from "$lib/server/session";
 
-const PUBLIC_PATHS = ["/auth/access", "/no-access"];
+// /admin (src/routes/admin) is deliberately excluded from the student
+// roster gate below - it's gated instead by its own, separate Cloudflare
+// Access Application (see $lib/server/admin-access.js and
+// src/routes/admin/+layout.server.js), since staff editing labs don't
+// have - and shouldn't need - a roster entitlement for this product.
+const PUBLIC_PATHS = ["/auth/access", "/no-access", "/admin"];
 
 export async function handle({ event, resolve }) {
   if (PUBLIC_PATHS.some((path) => event.url.pathname.startsWith(path))) {
