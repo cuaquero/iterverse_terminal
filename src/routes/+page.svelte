@@ -13,7 +13,7 @@ import LabList from "$components/LabList.svelte";
 	<span class="text-muted small">CompTIA A+ Core II</span>
 </div>
 <p class="text-secondary mb-4" style="max-width: 60ch">
-	Each lab runs a real Linux shell in the browser. Nothing to install, and nothing a student can break.
+	Each lab runs a Linux shell in your browser. No installation required.
 </p>
 
 <LabList labs={$labs} />
