@@ -15,7 +15,7 @@ Try variations of that command with your own strings.
 
 Just like the graphical interface you use for exploring files on your computer, you always work within one folder when you're using the terminal.
 
-For most of the tutorials on sandbox.bio, you won't have to worry about which folder you're in, but you can use `pwd` to **p**rint the **w**orking **d**irectory:
+For most of the labs here, you won't have to worry about which folder you're in, but you can use `pwd` to **p**rint the **w**orking **d**irectory:
 
 <Execute command="pwd" />
 

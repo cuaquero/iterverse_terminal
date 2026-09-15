@@ -5,4 +5,4 @@ import Execute from "$components/Execute.svelte";
 
 This concludes our introduction to the command line!
 
-You are now ready to tackle the other tutorials on sandbox.bio.
+You are now ready to tackle the other labs in Iterverse Terminal.

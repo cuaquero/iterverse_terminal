@@ -33,7 +33,7 @@ onMount(async () => {
 </script>
 
 <svelte:head>
-	<title>{tool.name} playground - Iterverse Terminal</title>
+	<title>{tool ? `${tool.name} playground` : "Playground"} - Iterverse Terminal</title>
 </svelte:head>
 
 {#if tool}
@@ -53,6 +53,4 @@ onMount(async () => {
 	</Sandbox>
 {:else}
 	<p>Playground for tool <code>{playground}</code> does not exist.</p>
-
-	<p>Please <a href="https://github.com/sandbox-bio/sandbox.bio/discussions">reach out</a> if you would like to propose new playgrounds!</p>
 {/if}

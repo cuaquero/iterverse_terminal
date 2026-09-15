@@ -12,12 +12,12 @@ For example, to store all burrito orders into `burritos.tsv`:
 Now notice that <Execute command="ls" inline /> shows the newly-created file!
 
 <Alert color="warning">
-	Be careful when filtering FASTA files for the `>` character!
+	Be careful when filtering files for the `>` character!
 </Alert>
 
-Let's take a brief detour from burritos and talk about bioinformatics.
+Let's take a brief detour from burritos to cover an important command-line gotcha.
 
-If you're using `grep` to extract lines from a FASTA file that contain the `>` character, make sure to put it in quotes! Otherwise, `grep` interprets `>` as an operator and will truncate your FASTA file and your data will be lost (there is no "Trash" when working on the command line).
+If you're using `grep` to extract lines from a file that contain the `>` character, make sure to put it in quotes! Otherwise, `grep` interprets `>` as an operator and will truncate your file and your data will be lost (there is no "Trash" when working on the command line).
 
 Let's illustrate this pitfall in our sandbox. If we `grep` for `>` with quotes, our 3 chromosomes are listed as expected:
 
@@ -35,7 +35,7 @@ Not to worry, we had prepared a backup file `ref.fa.bak` that you can use to reg
 
 <Execute command='cp ref.fa.bak ref.fa' />
 
-This is a common rite of passage in bioinformatics, so it's good to get it out of the way in a virtual sandbox!
+This is a common mistake for anyone working on the command line, so it's good to get it out of the way in a safe environment!
 
 And although putting quotes around `>` fixes the problem, a better way to avoid this issue altogether is to always prepend `cat` to your command-line pipelines (`cat` returns the contents of a file):
 

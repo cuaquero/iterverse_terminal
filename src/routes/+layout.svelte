@@ -101,12 +101,6 @@ onMount(() => {
 	<slot />
 </Container>
 
-{#if !$page.url.pathname.startsWith("/tutorials/")}
-	<footer class="container pt-3 mt-5 mb-5 text-muted border-top small">
-		Adapted from <a href="https://sandbox.bio" target="_blank" rel="noreferrer">sandbox.bio</a>, MIT licensed.
-	</footer>
-{/if}
-
 <style>
 :global(body) {
 	font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
