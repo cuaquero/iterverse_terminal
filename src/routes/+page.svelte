@@ -8,10 +8,7 @@ import LabList from "$components/LabList.svelte";
 	<title>Iterverse Terminal</title>
 </svelte:head>
 
-<div class="d-flex justify-content-between align-items-baseline">
-	<h1 class="fw-bold" style="font-size: 26px">Command line labs</h1>
-	<span class="text-muted small">CompTIA A+ Core II</span>
-</div>
+<h1 class="fw-bold" style="font-size: 26px">Command line labs</h1>
 <p class="text-secondary mb-4" style="max-width: 60ch">
 	Each lab runs a Linux shell in your browser. No installation required.
 </p>
