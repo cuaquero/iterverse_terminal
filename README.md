@@ -21,8 +21,9 @@ entitlement service this repo depends on),
 [Simulations](https://github.com/cuaquero/iterverse_simulations),
 [Packets](https://github.com/cuaquero/iterverse_packets),
 [Scripts](https://github.com/cuaquero/iterverse_scripts),
-[HelpDesk](https://github.com/cuaquero/iterverse_helpdesk), and
-[Type](https://github.com/cuaquero/iterverse_type). See the Labs
+[HelpDesk](https://github.com/cuaquero/iterverse_helpdesk),
+[Type](https://github.com/cuaquero/iterverse_type), and
+[Scheduler](https://github.com/cuaquero/iterverse_scheduler). See the Labs
 repo's `design-system/` for the shared brand tokens and Iterverse mark
 every product draws from.
 
