@@ -18,6 +18,13 @@ onMount(() => {
 <svelte:head>
 	<title>Iterverse Terminal</title>
 	<script src="/v86/xterm.js"></script>
+	<!-- Iterverse "Get Help" chat - see iterverse_chat's README. data-gate is
+	     on: this is a hands-on terminal/lab product, same reasoning as Labs.
+	     No CSP here to update, but this repo's COEP: require-corp needed
+	     widget.js's own response to opt in via Cross-Origin-Resource-Policy
+	     first (fixed in iterverse_chat) or the browser would silently
+	     refuse to load it. -->
+	<script src="https://chat.iterverse.net/widget.js" data-product="cli" data-gate="true"></script>
 </svelte:head>
 
 <!-- Bootstrap CSS and icons -->
