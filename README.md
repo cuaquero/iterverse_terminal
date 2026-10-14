@@ -14,7 +14,8 @@ installed and cannot damage anything. Adapted from
 [sandbox.bio](https://sandbox.bio) (MIT licensed).
 
 It's part of **Iterverse**, BTECH IT's umbrella platform alongside
-[Reader](https://github.com/cuaquero/iterverse_reader),
+[Library](https://github.com/cuaquero/iterverse_library),
+[Reps](https://github.com/cuaquero/iterverse_ai),
 [Labs](https://github.com/cuaquero/iterverse_labs),
 [Hub](https://github.com/cuaquero/iterverse_hub) (the shared roster/
 entitlement service this repo depends on),
