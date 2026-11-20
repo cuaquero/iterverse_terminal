@@ -76,7 +76,7 @@ ACCESS_AUD_ADMIN = "f2976093c7c88395fa652dbaca51669299d24f2dd2c9d0730d4f905b552b
 # consumer happens to use it (SERVICE_KEY for iterverse_hub itself,
 # iterverse_labs, iterverse_helpdesk, iterverse_chat and iterverse_jobs;
 # ROSTER_SERVICE_KEY for this app, iterverse_library/kavita-oidc-bridge,
-# iterverse_simulations and the iterverse_ai gateway; see
+# iterverse_simulations and the iterverse_reps gateway; see
 # iterverse_hub/docs/service-key-rotation.md for the list). A mismatch anywhere
 # fails every entitlement check with a 401, which this app's own code
 # treats identically to "not entitled" and shows as a normal /no-access

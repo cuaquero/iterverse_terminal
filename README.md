@@ -16,7 +16,7 @@ licensed). `URL_ASSETS` in `src/config.js` still points at `assets.sandbox.bio`.
 
 It's part of **Iterverse**, BTECH IT's umbrella platform alongside
 [Library](https://github.com/cuaquero/iterverse_library),
-[Reps](https://github.com/cuaquero/iterverse_ai),
+[Reps](https://github.com/cuaquero/iterverse_reps),
 [Labs](https://github.com/cuaquero/iterverse_labs),
 [Hub](https://github.com/cuaquero/iterverse_hub) (the shared roster/
 entitlement service this repo depends on),
