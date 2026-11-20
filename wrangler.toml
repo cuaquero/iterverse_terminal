@@ -9,7 +9,7 @@
 # run with a stale `name` either fail outright (if the old name is
 # fully gone, as it was here) or, worse, silently target the wrong
 # resource if the old name happens to still exist as something else.
-# Caught on 2026-09-11 while debugging why CLI alone (of six sibling
+# Caught on 2026-09-11 while debugging why CLI alone (of several sibling
 # services sharing ROSTER_SERVICE_KEY, see below) wasn't granting
 # access. If this product is ever renamed again, update this the same
 # day the Worker itself is renamed, not "whenever someone notices".
@@ -74,10 +74,10 @@ ACCESS_AUD_ADMIN = "f2976093c7c88395fa652dbaca51669299d24f2dd2c9d0730d4f905b552b
 # (`wrangler secret put ROSTER_SERVICE_KEY`). It must be the exact same
 # value iterverse_hub calls SERVICE_KEY, under whatever name each
 # consumer happens to use it (SERVICE_KEY for iterverse_hub itself,
-# ad_labs/iterverse-labs-worker, and btech-ticketing/iterverse-helpdesk;
-# ROSTER_SERVICE_KEY for this app, koodo-bridge/iterverse-reader, and
-# iterverse_simulations - six services total, not four; that count grew
-# as Iterverse gained products, keep it current). A mismatch anywhere
+# iterverse_labs, iterverse_helpdesk, iterverse_chat and iterverse_jobs;
+# ROSTER_SERVICE_KEY for this app, iterverse_library/kavita-oidc-bridge,
+# iterverse_simulations and the iterverse_ai gateway; see
+# iterverse_hub/docs/service-key-rotation.md for the list). A mismatch anywhere
 # fails every entitlement check with a 401, which this app's own code
 # treats identically to "not entitled" and shows as a normal /no-access
 # page, not an error - a silent-failure mode that's bitten this exact
@@ -95,16 +95,16 @@ ACCESS_AUD_ADMIN = "f2976093c7c88395fa652dbaca51669299d24f2dd2c9d0730d4f905b552b
 #     doesn't behave like the 09-04 incident. Fixed by re-setting the
 #     secret through a file + `cmd /c "... < file"` redirect instead of
 #     an interactive paste, which avoids that class of corruption.
-#     Second, after rotating this key across all six services, the
-#     Pages-hosted ones (koodo-bridge/iterverse-reader,
-#     iterverse_simulations, btech-ticketing/iterverse-helpdesk) kept
+#     Second, after rotating this key across every consumer, the
+#     Pages-hosted ones (iterverse_simulations,
+#     iterverse_helpdesk) kept
 #     failing even with the new secret correctly set, because
 #     `wrangler pages secret put` does NOT apply to the
 #     already-running production deployment the way a Worker's
 #     `wrangler secret put` does (that one gets an automatic "Secret
 #     Change" deployment) - a Pages project needs an actual new
 #     deployment before it picks up a changed secret. Fixed by
-#     redeploying each of those three normally. Whenever this key is
+#     redeploying each of them normally. Whenever this key is
 #     rotated again: redeploy every Pages-based consumer afterward,
 #     don't just assume the secret take effect on its own.
 
